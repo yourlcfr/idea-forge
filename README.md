@@ -21,18 +21,20 @@ Every run executes all eight stages, in order, no skipping. Two of them stop and
 
 Stage outputs land in `.idea-forge/<slug>/NN-<stage>.md` inside the current project, so an interrupted run resumes from the last completed stage instead of starting over.
 
-## Requirements
+## Zero dependencies — everything is bundled
 
-idea-forge is an orchestrator: it composes skills you need to have installed. Missing ones will break the stage that calls them.
+idea-forge is an orchestrator, but you install exactly one repository. Every skill a stage needs ships in `references/`, vendored under MIT from its upstream project (see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)):
 
-- [superpowers](https://github.com/obra/superpowers) — `brainstorming`, `writing-skills`
-- [mattpocock/skills](https://github.com/mattpocock/skills) — `grill-me`, `handoff`
-- [ECC (everything-claude-code)](https://github.com/affaan-m/ECC) — `prompt-optimizer`
-- [prompt-master](https://github.com/nidhinjs/prompt-master)
-- [humanizer](https://github.com/blader/humanizer)
-- [claude-howto](https://github.com/luongnv89/claude-howto) — cloned locally, read at stage 4
+| Bundled file | Upstream |
+|--------------|----------|
+| `brainstorming.md`, `writing-skills.md` | [superpowers](https://github.com/obra/superpowers) |
+| `grill-me.md`, `handoff.md` | [mattpocock/skills](https://github.com/mattpocock/skills) |
+| `prompt-optimizer.md` | [ECC](https://github.com/affaan-m/ECC) |
+| `prompt-master/` | [prompt-master](https://github.com/nidhinjs/prompt-master) |
+| `humanizer.md` | [humanizer](https://github.com/blader/humanizer) |
+| `shape-guide.md` | original, distilled from [claude-howto](https://github.com/luongnv89/claude-howto)'s lessons |
 
-Swapping any stage for an equivalent skill you prefer is a one-line edit in `SKILL.md`.
+If you happen to have an upstream skill installed, idea-forge invokes your installed version; otherwise it falls back to the bundled copy. Either way, swapping any stage for a skill you prefer is a one-line edit in `SKILL.md`.
 
 ## Install
 
