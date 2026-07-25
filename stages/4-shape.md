@@ -1,4 +1,4 @@
-# Shape guide — which Claude Code form fits the idea
+# Stage 4 — Shape check
 
 Used by Stage 4. Pick the FIRST row that matches; when two match, prefer the lighter form (lower row number). State the pick and a one-paragraph rationale.
 

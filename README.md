@@ -8,33 +8,26 @@ The output of a run is a single handoff document. At the top sits the final opti
 
 Every run executes all eight stages, in order, no skipping. Two of them stop and interview you; the rest flow on their own.
 
-| # | Stage | What happens | Composes |
-|---|-------|--------------|----------|
-| 1 | Clarify | One-question-at-a-time interview: purpose, constraints, success criteria | `superpowers:brainstorming` |
-| 2 | Draft prompt | First optimized prompt, targeting Claude Code by default | `prompt-master` |
-| 3 | Grill | Relentless interrogation of the brief and draft; weak assumptions die here | `grill-me` |
-| 4 | Shape check | Decides the right Claude Code form: skill, slash command, subagent, hook, MCP, or plain prompt | `claude-howto` lesson material |
-| 5 | Optimize | Compresses and sharpens the prompt against the hardened spec | `ecc:prompt-optimizer` |
-| 6 | De-AI | Strips AI-writing tells from every user-facing artifact | `humanizer` |
-| 7 | Package | Builds the artifact — a tested skill if the idea is reusable, polished prompt + spec files if it is one-off | `superpowers:writing-skills` |
-| 8 | Handoff | Assembles the final document and prints it in full | `handoff` |
+| # | Stage | What happens | Method |
+|---|-------|--------------|--------|
+| 1 | Clarify | One-question-at-a-time interview: purpose, constraints, success criteria | inline in `SKILL.md` |
+| 2 | Draft prompt | First optimized prompt, targeting Claude Code by default | [`stages/2-draft.md`](stages/2-draft.md) |
+| 3 | Grill | Relentless interrogation of the brief and draft; weak assumptions die here | inline in `SKILL.md` |
+| 4 | Shape check | Decides the right Claude Code form: skill, slash command, subagent, hook, MCP, or plain prompt | [`stages/4-shape.md`](stages/4-shape.md) |
+| 5 | Optimize | Diagnose, fill gaps, compress into full + quick versions | [`stages/5-optimize.md`](stages/5-optimize.md) |
+| 6 | De-AI | Strips AI-writing tells from every user-facing artifact | [`stages/6-deai.md`](stages/6-deai.md) |
+| 7 | Package | Builds the artifact — a tested skill if the idea is reusable, polished prompt + spec files if it is one-off | [`stages/7-package.md`](stages/7-package.md) |
+| 8 | Handoff | Assembles the final document and prints it in full | inline in `SKILL.md` |
 
 Stage outputs land in `.idea-forge/<slug>/NN-<stage>.md` inside the current project, so an interrupted run resumes from the last completed stage instead of starting over.
 
-## Zero dependencies — everything is bundled
+## One skill, no dependencies
 
-idea-forge is an orchestrator, but you install exactly one repository. Every skill a stage needs ships in `references/`, vendored under MIT from its upstream project (see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)):
+idea-forge is fully self-contained. Each stage's method is native to this repository: the small ones live inline in `SKILL.md`, the larger ones in `stages/` and load only when their stage runs. Nothing is invoked from outside; there is nothing else to install.
 
-| Bundled file | Upstream |
-|--------------|----------|
-| `brainstorming.md`, `writing-skills.md` | [superpowers](https://github.com/obra/superpowers) |
-| `grill-me.md`, `handoff.md` | [mattpocock/skills](https://github.com/mattpocock/skills) |
-| `prompt-optimizer.md` | [ECC](https://github.com/affaan-m/ECC) |
-| `prompt-master/` | [prompt-master](https://github.com/nidhinjs/prompt-master) |
-| `humanizer.md` | [humanizer](https://github.com/blader/humanizer) |
-| `shape-guide.md` | original, distilled from [claude-howto](https://github.com/luongnv89/claude-howto)'s lessons |
+The methods are distilled from a set of excellent MIT-licensed projects — superpowers, mattpocock/skills, prompt-master, ECC, humanizer, claude-howto. [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) maps each stage to its source. The originals go deeper than the slices this pipeline needs; they are worth installing on their own merits, just not required here.
 
-If you happen to have an upstream skill installed, idea-forge invokes your installed version; otherwise it falls back to the bundled copy. Either way, swapping any stage for a skill you prefer is a one-line edit in `SKILL.md`.
+Swapping any stage's method is an edit to one file in `stages/`.
 
 ## Install
 
