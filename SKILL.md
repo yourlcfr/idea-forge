@@ -13,6 +13,7 @@ Turn a messy idea into a battle-tested, agent-ready deliverable by running eight
 - After each stage: post a 1–3 line summary, save the stage output to `.idea-forge/<slug>/NN-<stage>.md` (slug = kebab-case from the idea) in the current project directory, then continue.
 - If a run was interrupted, resume from the highest-numbered stage file present in `.idea-forge/<slug>/`.
 - Stages 1 and 3 interview the user and wait for answers; every other stage flows on without asking permission.
+- Interview questions go through the AskUserQuestion tool whenever it is available: one call per question, answers as selectable options, your recommended option first and marked "(Recommended)". Fall back to plain-text questions only when the tool is absent.
 
 ## Stages (fixed order)
 
@@ -22,6 +23,7 @@ Interview the user until the idea has a stated purpose, constraints, and success
 
 - One question per message; wait for the answer before the next. Prefer multiple choice with your recommended option first.
 - Facts you can look up (filesystem, git, installed tools, project state) — look up, never ask. Decisions belong to the user — always ask, never assume.
+- Tech stack gets its own question whenever the idea builds software and the surrounding project does not already fix the stack. Offer both paths in one AskUserQuestion call: the likely stack candidates as options, plus one option to delegate the pick ("pilihkan untukku"). A delegated pick is stated in the brief with a one-line reason and confirmed at the restatement — delegation transfers the choice, not the accountability.
 - If the idea bundles several independent pieces, say so, help decompose, and forge the first piece only.
 - YAGNI as you go: strike features the purpose does not need, out loud.
 - Exit when you can restate the idea in three sentences plus a binary success criterion, and the user confirms the restatement.
