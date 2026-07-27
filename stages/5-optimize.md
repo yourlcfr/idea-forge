@@ -22,7 +22,7 @@ Classify the scope, because scope decides the prompt's architecture:
 
 ## Pass 2 — Fill
 
-Missing context is the top cause of first-attempt failure. Check all eleven; anything missing that the spec answers, fold in; anything nobody answered, either ask (if critical) or explicitly scope out:
+Missing context is the top cause of first-attempt failure. Check all eleven; anything missing that the spec answers, fold in. Anything still open: mark it ASSUMED (best-guess value + one-line reason) or scope it out explicitly — never ask the user here; interviews ended at Stage 3. Every ASSUMED item surfaces again in the handoff's open questions:
 
 1. Tech stack — named or detectable?
 2. Target scope — files, directories, modules?

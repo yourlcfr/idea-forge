@@ -1,10 +1,10 @@
 # Stage 2 — Draft prompt
 
-Take the clarified brief and produce the first optimized prompt: one paste-ready block, tuned to the target tool. Stage 1 already answered most questions; ask at most three more, and only if a critical dimension below is still blank.
+Take the clarified brief and produce the first optimized prompt: one paste-ready block, tuned to the target tool. Stage 2 never interviews — interviews belong to Stages 1 and 3 only. A critical dimension still blank after Stage 1 becomes an explicit ASSUMED entry: best-guess value plus a one-line reason, listed at the top of the draft. Stage 3 interrogates every ASSUMED entry first.
 
 ## Intent extraction
 
-Fill these nine dimensions before writing a word. Missing critical ones → ask (max 3 questions total).
+Fill these nine dimensions before writing a word. Missing critical ones → ASSUMED entries, never questions.
 
 | Dimension | What to pin down | Critical? |
 |-----------|------------------|-----------|
@@ -85,7 +85,7 @@ Identify the tool family, apply its rules. Unknown tool → route to the closest
 Stop and ask before: deleting any file, adding any dependency, changing schema/migrations, leaving Scope.
 
 ## Progress
-After each step output: [done] <what> — <files>
+After each step output: [done] <what> - <files>
 ```
 
 ## Diagnostic checklist

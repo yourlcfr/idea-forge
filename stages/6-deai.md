@@ -1,13 +1,15 @@
 # Stage 6 — De-AI
 
-Strip AI-writing tells from every user-facing artifact of this run: the final prompt's prose sections, the spec, the shape rationale, the handoff narrative. Rewrite, never merely delete — the cleaned text covers everything the original covered, at the same length class. Preserve meaning and register. Do not touch code blocks, quoted material, proper names, or structural templates.
+Strip AI-writing tells from every user-facing artifact produced so far: the final prompt's prose sections, the spec, the shape rationale. (The handoff does not exist yet — Stage 8 applies these same patterns to its own prose before printing.) Rewrite, never merely delete — the cleaned text covers everything the original covered, at the same length class. Preserve meaning and register.
+
+Scope: every pattern below, including the dash ban, applies to PROSE only. Code blocks, structural templates, and quoted material are exempt from both the edits and the final scan — scan the prose, skip the fences.
 
 ## Process
 
 1. Scan the artifact against all 33 patterns below.
 2. Draft rewrite.
 3. Self-audit: "what still reads as AI-generated?" — answer in two or three bullets.
-4. Final rewrite addressing them. Hard rule: the final text contains no em dashes (—) and no en dashes (–), including spaced ` — ` and double-hyphen ` -- ` forms. Replace each, in order of preference: period, comma, colon, parentheses, or restructure. Scan for `—` and `–` before returning; any hit means the draft is not done.
+4. Final rewrite addressing them. Hard rule: the final PROSE contains no em dashes (—) and no en dashes (–), including spaced ` — ` and double-hyphen ` -- ` forms. Replace each, in order of preference: period, comma, colon, parentheses, or restructure. Scan the prose (outside code fences) for `—` and `–` before returning; any prose hit means the draft is not done.
 
 ## Content patterns
 

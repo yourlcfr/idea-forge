@@ -10,10 +10,10 @@ Turn a messy idea into a battle-tested, agent-ready deliverable by running eight
 ## Contract
 
 - Interact with the user in Indonesian. Never add AI attribution to any artifact.
-- After each stage: post a 1–3 line summary, save the stage output to `.idea-forge/<slug>/NN-<stage>.md` (slug = kebab-case from the idea) in the current project directory, then continue.
+- After each stage: post a 1–3 line summary, save the stage output to `.idea-forge/<slug>/NN-<stage>.md` in the directory where the command was invoked, then continue. Slug = a 2–4 word kebab-case summary of the idea; if that directory already exists for a DIFFERENT idea, append `-2`, `-3`, …
 - If a run was interrupted, resume from the highest-numbered stage file present in `.idea-forge/<slug>/`.
-- Stages 1 and 3 interview the user and wait for answers; every other stage flows on without asking permission.
-- Interview questions go through the AskUserQuestion tool whenever it is available: one call per question, answers as selectable options, your recommended option first and marked "(Recommended)". Fall back to plain-text questions only when the tool is absent.
+- Stages 1 and 3 are the only stages that interview. Later stages never ask the user anything; a critical gap discovered later becomes an explicit ASSUMED decision (best-guess value + one-line reason) and surfaces in the handoff's open questions.
+- Interview questions go through the AskUserQuestion tool whenever it is available: answers as selectable options, your recommended option first and marked "(Recommended)". Related questions may share one call (the tool carries up to four); unrelated questions stay separate. Fall back to plain-text questions only when the tool is absent.
 
 ## Stages (fixed order)
 
@@ -23,7 +23,8 @@ Interview the user until the idea has a stated purpose, constraints, and success
 
 - One question per message; wait for the answer before the next. Prefer multiple choice with your recommended option first.
 - Facts you can look up (filesystem, git, installed tools, project state) — look up, never ask. Decisions belong to the user — always ask, never assume.
-- Tech stack gets its own question whenever the idea builds software and the surrounding project does not already fix the stack. Offer both paths in one AskUserQuestion call: the likely stack candidates as options, plus one option to delegate the pick ("pilihkan untukku"). A delegated pick is stated in the brief with a one-line reason and confirmed at the restatement — delegation transfers the choice, not the accountability.
+- Tech stack gets its own question whenever the idea builds software and the surrounding project does not already fix the stack. Offer both paths in one AskUserQuestion call: the likely stack candidates as options, plus one option to delegate the pick ("pilihkan untukku"). Delegation is available on ANY decision question, not just stack, and always follows the same protocol: record the pick with a one-line reason, confirm it at the restatement — delegation transfers the choice, not the accountability.
+- If the user waves the interview through ("go ahead", "kamu saja", silence after one prompt) or delegates everything at once: stop asking — a blanket delegation covers every remaining question, including stack. Infer the answers, mark each ASSUMED with a one-line reason, and present the restatement as "koreksi yang salah; diam berarti setuju", then proceed.
 - If the idea bundles several independent pieces, say so, help decompose, and forge the first piece only.
 - YAGNI as you go: strike features the purpose does not need, out loud.
 - Exit when you can restate the idea in three sentences plus a binary success criterion, and the user confirms the restatement.
@@ -38,10 +39,11 @@ Apply `stages/2-draft.md`. Extract the nine intent dimensions, pick the target t
 
 Interrogate the brief and draft prompt until every weak assumption is dead.
 
-- Walk each branch of the decision tree, resolving dependencies between decisions one at a time. For every question, state your recommended answer.
-- One question per message. Do not proceed until the user confirms shared understanding.
-- Use the eleven-point context checklist in `stages/5-optimize.md` § Missing context as ammunition: any unchecked item is a question.
-- Record every decision and every killed assumption in the stage file.
+- Build the decision tree first: extract every open decision from the brief and draft — features, data, edge cases, failure modes, operations — plus every ASSUMED entry Stage 2 recorded. Order by dependency, resolve parents before children. ASSUMED entries are interrogated first.
+- For every question, state your recommended answer. Batch related questions into one AskUserQuestion call (max four); unrelated ones stay separate calls.
+- Use the eleven-point context checklist in `stages/5-optimize.md` § Missing context as ammunition — but items that plainly do not apply to this idea are marked N/A in the stage file without asking. Never ask a question whose answer cannot change the spec.
+- If the user declines the grill or stops answering: resolve each remaining open point with your recommended answer marked ASSUMED, list them in one message, and proceed.
+- Record every decision, every N/A, and every killed assumption in the stage file.
 
 Output: hardened spec.
 
@@ -59,7 +61,7 @@ Apply `stages/6-deai.md` to every user-facing artifact produced so far (final pr
 
 ### 7. Package
 
-Always runs; its form adapts to Stage 4's decision. If the shape is reusable (skill / command / subagent / hook): build it per `stages/7-package.md`, including the one-subagent compliance test. Otherwise: finalize the polished prompt + spec as files. Output: the artifact + its path.
+Always runs; its form adapts to Stage 4's decision. If the shape is reusable (skill / command / subagent / hook): build it per `stages/7-package.md`, including the compliance test defined there. Otherwise: verify and finalize the prompt + spec files per the same file's one-off path. Output: the artifact + its path.
 
 ### 8. Handoff
 
@@ -69,7 +71,7 @@ Assemble the final deliverable — the document the user pastes to their agent. 
 2. The Stage 7 artifact: path, what it does, how the receiving agent must use it.
 3. Decisions log, open questions, next actions, and a short "suggested skills" list for the receiving agent.
 
-Rules: redact secrets and personal data; do not duplicate content that lives in artifacts — reference paths instead. Save to `.idea-forge/<slug>/handoff.md` and print it in full as the last message.
+Rules: apply the Stage 6 patterns to the handoff's own prose before printing. Redact real secrets and personal data — clearly-labeled fake fixtures and placeholders stay. Do not duplicate content that lives in artifacts — reference paths instead; the final prompt is the ONE exception and is always inlined in full, because the handoff must work standalone when pasted. Save to `.idea-forge/<slug>/handoff.md` and print it in full as the last message.
 
 ## Red flags — stop and correct
 

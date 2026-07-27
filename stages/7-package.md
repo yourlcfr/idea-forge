@@ -1,6 +1,6 @@
 # Stage 7 — Package
 
-Build the artifact Stage 4 chose. For a one-off (plain prompt): write the final prompt and spec as files in `.idea-forge/<slug>/` and stop here. For a reusable shape (skill, slash command, subagent, hook): build it as below.
+Build the artifact Stage 4 chose. For a one-off (plain prompt): the deliverable files already exist (03 spec, 05 prompt, cleaned by 06) — verify they are complete and consistent with each other, fix any drift, and declare them the final set. Do not rewrite content that is already right. For a reusable shape (skill, slash command, subagent, hook): build it as below.
 
 ## Where it lives
 

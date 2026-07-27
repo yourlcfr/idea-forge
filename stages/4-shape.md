@@ -16,5 +16,7 @@ Distinctions that decide close calls:
 - **Skill vs hook** — if forgetting is acceptable, skill. If forgetting must be impossible, hook. Skills rely on the model choosing to comply; hooks are enforced by the harness.
 - **Skill vs subagent** — a subagent is a skill plus isolation: its own context, its own tool allowlist. Reach for it only when isolation itself is the point.
 - **MCP vs everything else** — MCP is the only shape that adds NEW capability. If the model could already do it with existing tools, MCP is over-engineering.
+- **Harness hook vs product tooling** — row 4 means a Claude Code harness hook (fires on Claude's own events). Automation living inside the user's product or repo (git hooks, CI jobs, cron) is part of the thing being BUILT: the shape is the prompt or skill that builds it, not a harness hook.
+- **Not a Claude Code artifact at all** (pure content, a business process, a design) — shape is plain prompt; the pipeline still runs, the deliverable is the prompt plus spec.
 
 A composite idea can take two shapes (e.g. a skill that a hook enforces). Name the primary shape, note the secondary.
