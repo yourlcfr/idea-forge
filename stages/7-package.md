@@ -42,7 +42,7 @@ Frontmatter rules that matter:
 
 Prohibitions backfire on shaping problems; recipes leave nothing to negotiate. No "unless it matters" nuance clauses — a real exception becomes its own conditional.
 
-## The compliance test (mandatory)
+## The compliance test (mandatory for reusable shapes — the one-off path skips this section)
 
 One round, two subagents, before declaring done:
 

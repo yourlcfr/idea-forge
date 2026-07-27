@@ -2,7 +2,7 @@
 
 Strip AI-writing tells from every user-facing artifact produced so far: the final prompt's prose sections, the spec, the shape rationale. (The handoff does not exist yet — Stage 8 applies these same patterns to its own prose before printing.) Rewrite, never merely delete — the cleaned text covers everything the original covered, at the same length class. Preserve meaning and register.
 
-Scope: every pattern below, including the dash ban, applies to PROSE only. Code blocks, structural templates, and quoted material are exempt from both the edits and the final scan — scan the prose, skip the fences.
+Scope: every pattern below, including the dash ban, applies to PROSE only. Code blocks, structural templates, and quoted material are exempt from both the edits and the final scan. One clarification with teeth: a fence that merely wraps the final prompt for copy-paste does NOT exempt it — the prompt's prose is the primary target. Exempt are code blocks and templates INSIDE artifacts, not the delivery fence around a prompt.
 
 ## Process
 

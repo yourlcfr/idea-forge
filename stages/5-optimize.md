@@ -46,9 +46,11 @@ Missing context is the top cause of first-attempt failure. Check all eleven; any
 
 ## Output
 
-Two fenced blocks, both paste-ready:
+Two fenced blocks, both paste-ready, shaped by the target tool:
 
-1. **Full version** — complete, self-contained, with acceptance criteria, verification steps, and scope boundaries.
-2. **Quick version** — 3–6 lines for an experienced operator: the task, the gates, the stop conditions.
+1. **Full version** — the complete prompt. Agentic targets (Claude Code, IDEs, autonomous agents): self-contained with acceptance criteria, verification steps, and scope boundaries. Non-agentic targets (image / video / voice / one-shot chat): the best complete prompt in the target's native syntax per `stages/2-draft.md` routing — agentic scaffolding never leaks in.
+2. **Quick version** — the compact variant: for agentic targets 3–6 lines (task, gates, stop conditions); for non-agentic targets the shortest prompt that still carries the essentials.
+
+Epic scope: the Full version block is Prompt 1 of N; the remaining prompts follow as additional fenced blocks in order, each self-contained with its carried context block.
 
 Then a two-column table: enhancement → reason, one row per change that matters.

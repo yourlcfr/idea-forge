@@ -1,6 +1,6 @@
 # Stage 4 — Shape check
 
-Used by Stage 4. Pick the FIRST row that matches; when two match, prefer the lighter form (lower row number). State the pick and a one-paragraph rationale.
+Used by Stage 4. Pre-check before the table: is the deliverable a Claude Code artifact at all? If not (pure content, a business process, a human routine), the shape is plain prompt regardless of any row matching. Then pick the FIRST row that matches; when two match, prefer the lighter form (lower row number). State the pick and a one-paragraph rationale.
 
 | # | Shape | Pick when | Signals |
 |---|-------|-----------|---------|
