@@ -70,7 +70,7 @@ Identify the tool family, apply its rules. Unknown tool → route to the closest
 [What exists now: files, stack, prior attempts and why they failed.]
 
 ## Target state
-[What done looks like — files changed, behavior produced, tests passing. Binary.]
+[What done looks like: files changed, behavior produced, tests passing. Binary.]
 
 ## Scope
 - Work only in: [paths]

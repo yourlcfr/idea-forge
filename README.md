@@ -50,6 +50,10 @@ Answer the interview questions at stages 1 and 3 — or wave them through — an
 
 The contract in `SKILL.md` reflects how I run it: interaction in Indonesian, no AI attribution on any artifact, target tool defaulting to Claude Code. Edit the Contract section to taste; nothing else depends on it.
 
+## Editing the skill
+
+Run `scripts/check.sh` before committing any change (or wire it as your pre-commit hook: `printf '#!/usr/bin/env bash\nexec scripts/check.sh\n' > .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`). It lints the invariants that hold the pipeline together — cross-references resolve, one canonical handoff filename, dead wording stays dead, no dashes inside templates, exactly eight stages, only stages 1 and 3 interview. Three rounds of adversarial training showed that every serious defect in this skill was text colliding with text; the linter catches that class before it ships.
+
 ## License
 
 MIT
