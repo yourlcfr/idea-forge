@@ -20,6 +20,8 @@ Classify the scope, because scope decides the prompt's architecture:
 | High | Cross-domain, 5+ files | Plan-first prompt; phased execution |
 | Epic | Multi-session, architectural | Split into sequential prompts (below) |
 
+Tie-breaks: between Medium and High, cross-domain wins — touching more than one subsystem is High even if the file count is small. Non-code deliverables (research, content, process) map by effort, not files: one sitting = Low, needs its own plan = Medium, multi-session = Epic. Scope escalation found here (e.g. creep recorded by Stage 3's reversal protocol) is applied and logged, never re-asked.
+
 ## Pass 2 — Fill
 
 Missing context is the top cause of first-attempt failure. Check all eleven; anything missing that the spec answers, fold in. Anything still open: mark it ASSUMED (best-guess value + one-line reason) or scope it out explicitly — never ask the user here; interviews ended at Stage 3. Every ASSUMED item surfaces again in the handoff's open questions:
@@ -52,5 +54,7 @@ Two fenced blocks, both paste-ready, shaped by the target tool:
 2. **Quick version** — the compact variant: for agentic targets 3–6 lines (task, gates, stop conditions); for non-agentic targets the shortest prompt that still carries the essentials.
 
 Epic scope: the Full version block is Prompt 1 of N; the remaining prompts follow as additional fenced blocks in order, each self-contained with its carried context block.
+
+ASSUMED entries live OUTSIDE the prompt fences (in the stage file and the handoff's open questions). Inside a prompt, an assumption appears only as a plain constraint where the task needs it — never as a meta "list of assumptions" the receiving tool would misread as content.
 
 Then a two-column table: enhancement → reason, one row per change that matters.

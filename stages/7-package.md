@@ -1,12 +1,30 @@
 # Stage 7 — Package
 
-Build the artifact Stage 4 chose. For a one-off (plain prompt): the deliverable files already exist (03 spec, 05 prompt, cleaned by 06) — verify they are complete and consistent with each other, fix any drift, and declare them the final set. Do not rewrite content that is already right. For a reusable shape (skill, slash command, subagent, hook): build it as below.
+Build the artifact Stage 4 chose. For a one-off (plain prompt): the deliverable files already exist (03 spec, 05 prompt, cleaned by 06) — verify they are complete and consistent with each other, fix any drift, and declare them the final set. Do not rewrite content that is already right. For a reusable shape (skill, slash command, subagent, hook): first run the same consistency check over the stage files, then build as below.
+
+Two coherence rules for any built artifact:
+- Forbidden actions must not contradict the target state. If the goal requires touching CI, config, or schema, the scope lock allows exactly that slice instead of banning it wholesale.
+- Self-modification guard: if the deliverable modifies idea-forge itself (or any skill currently mid-run), never edit the live files during the run. Build into a staging copy (a branch or side directory), hand the apply step to the user in the handoff, and let the running pipeline finish on the text it started with.
 
 ## Where it lives
 
 - Skill / slash command → `~/.claude/skills/<name>/SKILL.md` (or the project's `.claude/skills/` if project-scoped)
-- Subagent → `.claude/agents/<name>.md`
+- Subagent → `~/.claude/agents/<name>.md` global, or the project's `.claude/agents/<name>.md` — same global/project choice as skills, driven by the Stage 1 decision
 - Hook → the project's `.claude/settings.json`, with the hook script alongside
+
+## Agent-definition anatomy (subagent shape)
+
+```
+---
+name: kebab-case-name
+description: [When the MAIN agent should delegate to this one — triggering conditions, symptoms, "use proactively for X". This line decides whether delegation ever fires.]
+tools: [minimal allowlist — the isolation is the point]
+---
+
+[System prompt: the role, its method, its output contract — what it returns to the main agent as its final message.]
+```
+
+The subagent compliance test covers BOTH failure modes: (a) delegation — does a main agent given the trigger scenario actually route to this subagent based on the description? (b) execution — does the subagent, once invoked, follow its method and return the contracted output shape?
 
 ## SKILL.md anatomy
 

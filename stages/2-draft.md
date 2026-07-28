@@ -44,9 +44,11 @@ Identify the tool family, apply its rules. Unknown tool → route to the closest
 
 **Research/orchestration (Perplexity, Manus).** Describe the end deliverable, not the steps — they decompose internally. Specify the artifact type (report / spreadsheet / code). Add citation requirements and "Flag any data point you are not confident about." Long chains: add verification checkpoints.
 
+**Research/analysis deliverable on a general agent (no codebase).** When the deliverable is a report or analysis, do NOT use the coding task-brief. Structure instead: the question (precise, bounded in time/place), sources and method, evidence gates as stop conditions ("stop and flag when sources conflict irreconcilably, when scope wants to widen, when a claim rests on one source"), output format (length, sections, citation style), and what is out of scope. Grounding anchor mandatory.
+
 **Computer-use / browser agents.** Describe the outcome, not the navigation. Constraints explicit; the agent decides alone without them. Permission boundaries: "Do not make any purchase. Research only." Stop condition for irreversible actions: "Ask me before submitting any form or sending any message."
 
-**Image generation (Midjourney, DALL-E, Stable Diffusion).** Structured descriptors: subject, action, setting, style, mood, lighting, color, composition, aspect ratio, negative prompt, style reference. Midjourney: comma-separated + `--ar --v --no` parameters. DALL-E: prose + "no text in the image unless specified". SD: `(word:weight)` syntax, CFG 7–12, negative prompt mandatory. ComfyUI: the checkpoint model is a Stage 1/3 interview item (ASSUMED if unknown here); always output Positive and Negative blocks separately.
+**Image generation (Midjourney, DALL-E, Stable Diffusion).** Structured descriptors: subject, action, setting, style, mood, lighting, color, composition, aspect ratio, negative prompt, style reference. Midjourney: comma-separated + `--ar --v --no` parameters. DALL-E: prose + "no text in the image unless specified". SD: `(word:weight)` syntax, negative prompt mandatory; CFG by model family — SD 1.5: 7–12, SDXL: 4–8. ComfyUI: the checkpoint model is a Stage 1/3 interview item (ASSUMED if unknown here); always output Positive and Negative blocks separately.
 
 **Image editing (reference in hand).** Tell the user to attach the reference first. Prompt describes the delta ONLY: what changes, what stays identical, how much (subtle/moderate/significant).
 
@@ -112,5 +114,5 @@ Scan the draft for these failure patterns; fix silently, flag only when the fix 
 
 ## Output
 
-1. One fenced code block: the prompt, paste-ready.
+1. The prompt, paste-ready — one fenced block PER PASTE SURFACE. Single-input tools get one block; multi-field tools get one block per field (ComfyUI: Positive and Negative; voice tools: the spoken text fenced, delivery settings outside the fence so they are never read aloud). Epic scope may already sketch the prompt series here; Stage 5 § Output owns the final series shape.
 2. One line: target tool + what was optimized and why.
