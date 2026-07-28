@@ -37,7 +37,7 @@ Output: clarified idea brief.
 
 ### 2. Draft prompt
 
-Apply `stages/2-draft.md`. Extract the nine intent dimensions, pick the target tool (Claude Code unless the idea names another), and write the first optimized prompt as a single paste-ready block.
+Apply `stages/2-draft.md`. Extract the nine intent dimensions, pick the target tool (Claude Code unless the idea names another), and write the first optimized prompt, paste-ready — one fenced block per paste surface of the target tool.
 
 ### 3. Grill
 
@@ -48,7 +48,7 @@ Interrogate the brief and draft prompt until every weak assumption is dead.
 - For every question, state your recommended answer. Batch related questions into one AskUserQuestion call (max four) unless one depends on another's answer; unrelated ones stay separate calls. One question = one decision axis — options must never bundle two independent choices into package deals. A delegated pick here is confirmed in the closing decisions-list message, not by re-asking.
 - Use the eleven-point context checklist in `stages/5-optimize.md` § Pass 2 — Fill as ammunition — but items that plainly do not apply to this idea are marked N/A in the stage file without asking. Never ask a question whose answer cannot change the spec.
 - If the user reverses a decision Stage 1 closed: update `01-clarify.md` and `02-draft.md` to the new value, log the reversal, and redo any downstream conclusion that depended on it — including the scope class (a reversal can make the idea epic, or shrink it to trivial). No restart — stage files are living documents.
-- A reversal that changes the CORE PURPOSE (a pivot, not a parameter) is bigger than the protocol above: re-run Stage 1's exit gate on the new purpose — new three-sentence restatement, new binary success criterion, user confirmation — and re-slug: rename the `.idea-forge/` directory to match the new idea, noting the old name in `01-clarify.md`. Then continue from Stage 2.
+- A reversal that changes the CORE PURPOSE (a pivot, not a parameter) is bigger than the protocol above: re-run Stage 1's exit gate on the new purpose — new three-sentence restatement, new binary success criterion, user confirmation — and re-slug: rename the `.idea-forge/` directory to match the new idea, noting the old name in `01-clarify.md`. Delete every stage file numbered above 01 (they predate the pivot; a resume must never land on them), then continue from Stage 2.
 - If the user declines the grill or stops answering: resolve each remaining open point with your recommended answer marked ASSUMED, list them in one message, and proceed.
 - Record every decision, every N/A, and every killed assumption in the stage file.
 
@@ -78,7 +78,7 @@ Assemble the final deliverable — the document the user pastes to their agent. 
 2. The Stage 7 artifact: path, what it does, how the receiving agent must use it. Non-agentic target (image/video/voice tools): this becomes "how to use the prompt in the target tool". Remote receiver (Devin, cloud agents) that cannot read local paths: inline everything it needs instead of referencing `.idea-forge/` paths.
 3. Decisions log, open questions (including every surviving ASSUMED), next actions (including every parked idea), and — only when the receiver consumes Claude Code skills — a short "suggested skills" list; for other agents, adapt to that agent's own configuration format or omit.
 
-Rules: apply the Stage 6 patterns to the handoff's own prose before printing. Redact real secrets and personal data — clearly-labeled fake fixtures and placeholders stay. Do not duplicate content that lives in artifacts — reference paths instead; the final prompt is the ONE exception and is always inlined in full, because the handoff must work standalone when pasted. Save to `.idea-forge/<slug>/handoff.md` and print it in full as the last message.
+Rules: apply the Stage 6 patterns to the handoff's own prose before printing. Redact real secrets and personal data — clearly-labeled fake fixtures and placeholders stay. Do not duplicate content that lives in artifacts — reference paths instead; the final prompt is the ONE exception and is always inlined in full, because the handoff must work standalone when pasted. Save to `.idea-forge/<slug>/08-handoff.md` and print it in full as the last message.
 
 ## Red flags — stop and correct
 

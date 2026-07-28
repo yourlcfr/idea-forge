@@ -1,6 +1,6 @@
 # Stage 2 — Draft prompt
 
-Take the clarified brief and produce the first optimized prompt: one paste-ready block, tuned to the target tool. Stage 2 never interviews — interviews belong to Stages 1 and 3 only. A critical dimension still blank after Stage 1 becomes an explicit ASSUMED entry: best-guess value plus a one-line reason, listed at the top of the draft. Stage 3 interrogates every ASSUMED entry first.
+Take the clarified brief and produce the first optimized prompt, tuned to the target tool and paste-ready — one fenced block per paste surface (see § Output). Stage 2 never interviews — interviews belong to Stages 1 and 3 only. A critical dimension still blank after Stage 1 becomes an explicit ASSUMED entry: best-guess value plus a one-line reason, listed at the top of the draft. Stage 3 interrogates every ASSUMED entry first.
 
 ## Intent extraction
 
